@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy Birthday, riii</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500;1,600&family=Great+Vibes&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d0a0f;--ink:#efe6dc;--soft:#a99c90;--g1:#f3dfae;--g2:#c9a25a;--em:#f6e2b0;--glow:rgba(201,162,90,.22);--rose:rgba(190,110,130,.12);--serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;--script:'Great Vibes','Snell Roundhand','Apple Chancery',cursive;--sans:'Jost',system-ui,-apple-system,sans-serif}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f6f0e8;--ink:#2b2026;--soft:#76676d;--g1:#c9a05a;--g2:#8a6128;--em:#8a5a1c;--glow:rgba(201,162,90,.28);--rose:rgba(190,110,130,.14)}}
+:root[data-theme="light"]{--bg:#f6f0e8;--ink:#2b2026;--soft:#76676d;--g1:#c9a05a;--g2:#8a6128;--em:#8a5a1c;--glow:rgba(201,162,90,.28);--rose:rgba(190,110,130,.14)}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;overflow:hidden}
+body{background:var(--bg);color:var(--ink);font-family:var(--serif)}
+body:before{content:"";position:fixed;inset:0;z-index:15;pointer-events:none;opacity:.07;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+#glow{position:fixed;left:50%;top:50%;width:130vmax;height:130vmax;margin:-65vmax 0 0 -65vmax;border-radius:50%;background:radial-gradient(circle,var(--glow),var(--rose) 35%,transparent 62%);opacity:.55;transition:transform 4s cubic-bezier(.3,.1,.2,1),opacity 1.8s;pointer-events:none}
+#glow.lit{opacity:1}
+canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none}
+#dust{z-index:1}#fx{z-index:20}
+.gold{background:linear-gradient(110deg,var(--g2) 0%,var(--g1) 35%,var(--g2) 55%,var(--g1) 80%,var(--g2) 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:sheen 9s linear infinite}
+.gold .emo{-webkit-text-fill-color:initial;color:var(--ink)}
+@keyframes sheen{to{background-position:-250% 0}}
+.eyebrow{font-family:var(--sans);font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--soft);font-weight:400}
+
+#intro{position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;cursor:pointer;transition:opacity 1.4s,visibility 1.4s;-webkit-tap-highlight-color:transparent}
+#intro.gone{opacity:0;visibility:hidden}
+#hint{margin-top:26px;min-height:1.2em;animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.4}}
+svg.cake{width:min(270px,70vw);height:auto;overflow:visible;margin-top:30px}
+.flame,.gl,.smoke{opacity:0;transition:opacity .7s}
+.flame{transform-box:fill-box;transform-origin:50% 100%}
+.lit .flame{opacity:1;animation:flick .9s ease-in-out infinite alternate}
+.lit .f2{animation-delay:.25s}.lit .f3{animation-delay:.5s}
+.lit .gl{opacity:1;animation:glowp 1.6s ease-in-out infinite alternate}
+@keyframes flick{from{transform:scale(1,1) rotate(-2deg)}to{transform:scale(.92,1.07) rotate(2deg)}}
+@keyframes glowp{from{opacity:.75}to{opacity:1}}
+.out .smoke{animation:smoke 2.6s ease-out forwards}
+@keyframes smoke{0%{opacity:.55;transform:translateY(0)}100%{opacity:0;transform:translateY(-34px)}}
+
+#stage{position:fixed;inset:0;z-index:3;display:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.scene{position:absolute;inset:0;display:flex;overflow-y:auto;padding:calc(env(safe-area-inset-top,0px) + 58px) 30px calc(env(safe-area-inset-bottom,0px) + 90px);opacity:0;visibility:hidden;transition:opacity 1.2s,visibility 1.2s}
+.scene.on{opacity:1;visibility:visible}
+.inner{margin:auto;max-width:520px;text-align:center}
+.txt{font-style:italic;font-weight:500;font-size:clamp(22px,6vw,29px);line-height:1.62}
+.txt .s{display:block;margin:0 0 .9em}
+.txt .s:last-child{margin-bottom:0}
+.k{font-style:normal;font-weight:600;color:var(--em);text-shadow:0 0 24px var(--glow)}
+.s{opacity:0;filter:blur(6px);transition:opacity 1.8s ease,filter 1.8s ease}
+.s.v{opacity:1;filter:none}
+.blk{display:block}
+.orn{width:44px;height:1px;margin:0 auto 34px;background:linear-gradient(90deg,transparent,var(--g2),transparent)}
+.title{font-family:var(--script);font-weight:400;font-size:clamp(54px,17vw,100px);line-height:1.1;margin:8px 0 0}
+.sm{font-size:clamp(44px,13vw,70px);line-height:1.2}
+.btns{margin-top:40px}
+button{font-family:var(--sans);font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:500;color:var(--ink);background:transparent;border:1px solid var(--g2);border-radius:2px;padding:14px 22px;margin:6px;cursor:pointer;transition:background .3s}
+button:hover{background:var(--glow)}
+button:active{transform:scale(.98)}
+#bar{position:fixed;z-index:6;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 18px);display:none;justify-content:center;gap:6px;pointer-events:none}
+#bar i{width:18px;height:1px;background:var(--soft);opacity:.3;transition:all .8s}
+#bar i.d{background:var(--g2);opacity:1}
+#next{position:fixed;z-index:6;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 28px);text-align:center;opacity:0;transition:opacity .8s;pointer-events:none}
+#next.show{opacity:.7;animation:pulse 2.6s ease-in-out infinite}
+#back{position:fixed;z-index:7;left:8px;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);display:none;margin:0;padding:10px 14px;border:0;font-size:11px;color:var(--soft)}
+#back:hover{background:transparent}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<div id="glow"></div>
+<canvas id="dust"></canvas>
+<canvas id="fx"></canvas>
+
+<div id="intro">
+<div class="eyebrow">for riii</div>
+<svg class="cake" id="cake" viewBox="0 0 260 300" aria-hidden="true">
+<defs>
+<linearGradient id="cb" x1="0" x2="1"><stop offset="0" stop-color="#e6cfc8"/><stop offset=".4" stop-color="#fbeee8"/><stop offset="1" stop-color="#dcc3bb"/></linearGradient>
+<linearGradient id="ct" x1="0" x2="1"><stop offset="0" stop-color="#ead5ce"/><stop offset=".4" stop-color="#fff5f0"/><stop offset="1" stop-color="#e0c8c0"/></linearGradient>
+<linearGradient id="gd" x1="0" x2="1"><stop offset="0" stop-color="#9c7432"/><stop offset=".5" stop-color="#f3dfae"/><stop offset="1" stop-color="#9c7432"/></linearGradient>
+<linearGradient id="wax" x1="0" x2="1"><stop offset="0" stop-color="#d9cdbd"/><stop offset=".5" stop-color="#fbf5ec"/><stop offset="1" stop-color="#cfc2b0"/></linearGradient>
+<linearGradient id="fg" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#e0822a"/><stop offset=".55" stop-color="#f6b94d"/><stop offset="1" stop-color="#fff3cf"/></linearGradient>
+<radialGradient id="gl"><stop offset="0" stop-color="#ffd98a" stop-opacity=".5"/><stop offset="1" stop-color="#ffd98a" stop-opacity="0"/></radialGradient>
+</defs>
+<ellipse cx="130" cy="276" rx="118" ry="9" fill="#000" opacity=".3"/>
+<ellipse cx="130" cy="266" rx="116" ry="13" fill="url(#gd)"/>
+<ellipse cx="130" cy="262" rx="112" ry="11" fill="#1a1216" opacity=".35"/>
+<path d="M34 186 V252 Q34 262 130 264 Q226 262 226 252 V186Z" fill="url(#cb)"/>
+<ellipse cx="130" cy="186" rx="96" ry="13" fill="#fff8f4"/>
+<path d="M34 232 Q130 250 226 232 V238 Q130 256 34 238Z" fill="url(#gd)"/>
+<path d="M66 124 V180 Q66 190 130 192 Q194 190 194 180 V124Z" fill="url(#ct)"/>
+<ellipse cx="130" cy="124" rx="64" ry="10" fill="#fffaf6"/>
+<path d="M66 156 Q130 170 194 156 V161 Q130 175 66 161Z" fill="url(#gd)"/>
+<g fill="#e7c9b8" opacity=".9"><circle cx="58" cy="206" r="2.4"/><circle cx="82" cy="212" r="2.4"/><circle cx="106" cy="216" r="2.4"/><circle cx="130" cy="217" r="2.4"/><circle cx="154" cy="216" r="2.4"/><circle cx="178" cy="212" r="2.4"/><circle cx="202" cy="206" r="2.4"/></g>
+<circle class="gl" cx="100" cy="82" r="48" fill="url(#gl)"/><circle class="gl" cx="130" cy="72" r="52" fill="url(#gl)"/><circle class="gl" cx="160" cy="82" r="48" fill="url(#gl)"/>
+<rect x="96" y="92" width="8" height="34" rx="1.5" fill="url(#wax)"/>
+<rect x="126" y="82" width="8" height="44" rx="1.5" fill="url(#wax)"/>
+<rect x="156" y="92" width="8" height="34" rx="1.5" fill="url(#wax)"/>
+<g stroke="#3a2c26" stroke-width="1.4"><line x1="100" y1="92" x2="100" y2="86"/><line x1="130" y1="82" x2="130" y2="76"/><line x1="160" y1="92" x2="160" y2="86"/></g>
+<path class="flame f1" d="M100 86 C93 76 96 64 100 54 C104 64 107 76 100 86Z" fill="url(#fg)"/>
+<path class="flame f2" d="M130 76 C122 65 126 52 130 40 C134 52 138 65 130 76Z" fill="url(#fg)"/>
+<path class="flame f3" d="M160 86 C153 76 156 64 160 54 C164 64 167 76 160 86Z" fill="url(#fg)"/>
+<g fill="none" stroke="#a99c90" stroke-width="1.1" stroke-linecap="round"><path class="smoke" d="M100 84 C93 72 107 64 98 48"/><path class="smoke" d="M130 74 C122 60 138 52 128 32"/><path class="smoke" d="M160 84 C153 72 167 64 158 48"/></g>
+</svg>
+<div class="eyebrow" id="hint">tap to light the candles</div>
+</div>
+
+<div id="bar"></div>
+<div id="stage"></div>
+<div id="next" class="eyebrow">tap to continue</div>
+<button id="back">‹ back</button>
+
+<script>
+var T=[
+"i honestly don’t even know how to write this message because there’s so much i wish i could say to you, and somehow no words ever feel enough. but today is your day, and no matter what things are like between us now, i couldn’t let this day pass without telling you **how much i genuinely wish for you to be happy**.",
+"it’s honestly crazy how someone can go from being such a big part of your everyday life to someone you don’t get to talk to the same way anymore, but still remain so special to you. i guess some people just **leave a mark on your heart that time and circumstances can’t erase**. and for me, you’ll always be one of those people, riii. ❤️",
+"i know things aren’t the same anymore, and i’m not writing this to make anything complicated or to make you feel any kind of way. i just want you to know that **somewhere, there’s still someone who genuinely wishes the most beautiful things for you**. someone who hopes you’re eating properly, sleeping peacefully, taking care of yourself, smiling more, stressing less, and finding happiness in the little things. someone who hopes life gives you a reason to smile again, even on the days when everything feels like too much.",
+"i really hope this year is good to you, riii. i hope you get everything you’ve ever prayed for, even **the things you’ve stopped asking for because you thought they would never happen**. i hope you achieve your dreams, make yourself proud, and meet people who appreciate your heart, understand you even when you can’t explain yourself, and **make you feel loved without ever having to question it**.",
+"and i hope you never forget how special you are. **i wish you could see yourself through my eyes just once**, because maybe then you’d understand why i could never look at you as just another person who came into my life. **you mean more to me than i’ll probably ever be able to put into words**. and even though life doesn’t always let us keep people the way we wish we could, it doesn’t mean the time we had or the feelings we shared suddenly mean nothing.",
+"i’ll always be thankful for the memories, the little moments, the laughs, the conversations, and all those ordinary days that became memories i’ll always have a soft spot for. i don’t know how you look back at everything now, and i don’t expect you to feel the same way i do. i just know i’m grateful our paths crossed, and if i could go back and meet you all over again, knowing everything i know now, **i’d still be grateful that i got to know you**. 🥹❤️",
+"i wish i could give you the biggest hug today and tell you that **everything you want out of life will find its way to you eventually**. i hope you have beautiful days ahead, laugh until your stomach hurts, feel proud of yourself, and experience moments of happiness so genuine that you don’t even realise you’re making a memory. i hope you find a kind of happiness that stays, peace that makes your heart feel light, and love that always makes you feel valued.",
+"and riii, please **take care of yourself**, okay? even when nobody’s reminding you, even when you’re busy, and even when things aren’t going your way. don’t be too hard on yourself, don’t forget to eat, don’t overthink everything, and please remember that **you deserve good things too**. i hope you always find your way back to yourself, especially on the days when life feels difficult.",
+"i don’t know what place i’ll have in your life from here on, and maybe that’s just something time will figure out. but today, i don’t want to think about what’s changed or what’s different. i just want to wish happiness for someone who has genuinely meant so much to me. you don’t have to say anything special to this message or feel like you owe me anything for it. i just wanted you to know that **i meant every single word**.",
+"@happy birthday, my riii.|❤️🫂",
+"whatever happens in life, i’ll always hope that it’s kind to you. **i’ll always wish good things for you**, and i’ll always be happy to know that you’re doing well."];
+var GL=[[0,0],[28,-14],[-30,12],[18,28],[-22,-22],[30,16],[-16,26],[8,-26],[-26,6],[22,-8],[0,0]];
+var PC=['#f3dfae','#d9b26a','#b8893f','#e0a9a0','#c98a8a','#f6efe6'];
+
+function split(t){var m=t.match(/[^.?!]+[.?!]*\s*/g),o=[];
+m.forEach(function(p){if(o.length&&!/[a-z]/i.test(p))o[o.length-1]+=p;else o.push(p)});
+return o.map(function(s){return s.replace(/\*\*(.+?)\*\*/g,'<em class="k">$1</em>').replace(/\*\*/g,'')})}
+
+var stage=document.getElementById('stage'),bar=document.getElementById('bar'),glow=document.getElementById('glow'),sc=[];
+function scene(h){var d=document.createElement('div');d.className='scene';d.innerHTML='<div class="inner">'+h+'</div>';stage.appendChild(d);sc.push(d)}
+scene('<div class="eyebrow s blk" style="margin-bottom:18px">for riii</div><h1 class="title gold s blk">Happy Birthday,</h1><h1 class="title gold s blk" style="font-size:clamp(70px,23vw,130px)">riii</h1><div class="s blk" style="font-size:28px;margin-top:14px">❤️🥹🫂</div><span class="orn s blk" style="margin:30px auto 0"></span>');
+T.forEach(function(t){
+if(t.charAt(0)==='@'){var q=t.slice(1).split('|');scene('<span class="orn s blk"></span><h1 class="title sm gold s blk">'+q[0]+' <span class="emo">'+q[1]+'</span></h1>');return}
+scene('<span class="orn s blk"></span><div class="txt">'+split(t).map(function(s){return '<span class="s">'+s+'</span>'}).join('')+'</div>')});
+scene('<span class="orn s blk"></span><h1 class="title sm gold s blk">be happy, okay? genuinely happy.</h1><h1 class="title gold s blk" style="font-size:clamp(34px,10vw,54px);line-height:1.25">you deserve the world and so much more. <span class="emo">❤️🥹🫶🏻</span></h1><div class="btns s blk"><button id="more">celebrate</button><button id="again">read again</button></div>');
+sc.forEach(function(){var d=document.createElement('i');d.style.width='12px';bar.appendChild(d)});
+
+var cur=-1,tm=[],ready=false,nx=document.getElementById('next'),bk=document.getElementById('back');
+function reveal(e,s){e.classList.add('v');if(s.scrollHeight>s.clientHeight+4)s.scrollTo({top:Math.max(0,e.offsetTop-s.clientHeight*.35),behavior:'smooth'})}
+function show(i){
+tm.forEach(clearTimeout);tm=[];ready=false;nx.classList.remove('show');
+if(cur>=0)sc[cur].classList.remove('on');
+cur=i;var s=sc[i];s.classList.add('on');s.scrollTop=0;
+s.querySelectorAll('.s').forEach(function(e){e.classList.remove('v')});
+glow.style.transform='translate('+GL[i%GL.length][0]+'vw,'+GL[i%GL.length][1]+'vh)';
+Array.prototype.forEach.call(bar.children,function(d,k){d.className=k<=i?'d':''});
+bk.style.display=i>0?'block':'none';
+var els=s.querySelectorAll('.s'),t=700;
+els.forEach(function(e){var w=e.textContent.trim().split(/\s+/).length;tm.push(setTimeout(function(){reveal(e,s)},t));t+=w>3?900+w*95:1200});
+tm.push(setTimeout(done,t+600));
+if(i===sc.length-1)tm.push(setTimeout(function(){conf(90,W/2,H*.5)},900));
+}
+function done(){ready=true;if(cur<sc.length-1)nx.classList.add('show')}
+function skip(){tm.forEach(clearTimeout);tm=[];sc[cur].querySelectorAll('.s').forEach(function(e){e.classList.add('v')});done()}
+function next(){if(!ready){skip();return}if(cur<sc.length-1)show(cur+1)}
+stage.addEventListener('click',next);
+bk.addEventListener('click',function(e){e.stopPropagation();if(cur>0)show(cur-1)});
+addEventListener('keydown',function(e){if(stage.style.display!=='flex')return;if(e.key==='ArrowRight'||e.key===' ')next();if(e.key==='ArrowLeft'&&cur>0)show(cur-1)});
+document.getElementById('more').addEventListener('click',function(e){e.stopPropagation();conf(80,W*.12,H*.92);conf(80,W*.88,H*.92);rain()});
+document.getElementById('again').addEventListener('click',function(e){e.stopPropagation();show(0)});
+
+var dust=document.getElementById('dust'),fx=document.getElementById('fx'),dc=dust.getContext('2d'),fc=fx.getContext('2d'),W,H,dpr;
+function fit(){dpr=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;[dust,fx].forEach(function(c){c.width=W*dpr;c.height=H*dpr});dc.setTransform(dpr,0,0,dpr,0,0);fc.setTransform(dpr,0,0,dpr,0,0)}
+fit();addEventListener('resize',fit);
+var still=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function isLight(){var t=document.documentElement.getAttribute('data-theme');return t==='light'||(t!=='dark'&&matchMedia('(prefers-color-scheme:light)').matches)}
+var D=[];for(var i=0;i<46;i++)D.push({x:Math.random()*W,y:Math.random()*H,r:.6+Math.random()*1.7,v:.08+Math.random()*.25,p:Math.random()*6,s:.006+Math.random()*.014});
+var P=[];
+function mk(x,y,vx,vy){P.push({x:x,y:y,vx:vx,vy:vy,w:3+Math.random()*4,h:6+Math.random()*9,r:Math.random()*6,vr:Math.random()*.2-.1,t:Math.random()*6,c:PC[Math.floor(Math.random()*PC.length)],o:Math.random()<.3})}
+function conf(n,x,y){for(var i=0;i<n;i++){var a=-Math.PI/2+(Math.random()-.5)*Math.PI*1.7,s=3+Math.random()*9;mk(x,y,Math.cos(a)*s,Math.sin(a)*s)}}
+function rain(){for(var i=0;i<70;i++)mk(Math.random()*W,-20-Math.random()*260,Math.random()*1.2-.6,.6+Math.random()*1.6)}
+(function loop(){
+dc.clearRect(0,0,W,H);fc.clearRect(0,0,W,H);
+if(!still){var col=isLight()?'184,137,63':'236,206,140';
+D.forEach(function(d){d.y-=d.v;d.p+=d.s*10;if(d.y<-6){d.y=H+6;d.x=Math.random()*W}
+dc.fillStyle='rgba('+col+','+(.12+.38*Math.abs(Math.sin(d.p)))+')';dc.beginPath();dc.arc(d.x+Math.sin(d.p*.5)*8,d.y,d.r,0,6.283);dc.fill()})}
+P=P.filter(function(p){return p.y<H+30});
+P.forEach(function(p){p.vy+=.11;p.vx*=.985;p.vy*=.99;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;p.t+=.12;
+fc.save();fc.translate(p.x,p.y);fc.rotate(p.r);fc.scale(1,Math.cos(p.t));fc.fillStyle=p.c;
+if(p.o){fc.beginPath();fc.arc(0,0,p.w*.55,0,6.283);fc.fill()}else fc.fillRect(-p.w/2,-p.h/2,p.w,p.h);fc.restore()});
+requestAnimationFrame(loop)})();
+
+var step=0,intro=document.getElementById('intro'),cake=document.getElementById('cake'),hint=document.getElementById('hint');
+intro.addEventListener('click',function(){
+if(step===0){cake.classList.add('lit');glow.classList.add('lit');hint.textContent='make a wish, then tap to blow them out';step=1}
+else if(step===1){step=2;cake.classList.remove('lit');cake.classList.add('out');hint.textContent='';conf(120,W/2,H*.5);
+setTimeout(function(){intro.classList.add('gone');stage.style.display='flex';bar.style.display='flex';glow.classList.remove('lit');show(0)},1200)}});
+</script>
+</body>
+</html>
